@@ -1,7 +1,9 @@
+import Navigation from "./components/navigation";
+
 const Home = () => {
   return (
-    <main>
-      <h1>Hello World</h1>
+    <main className="flex items-center justify-center">
+      <Navigation />
     </main>
   );
 };

@@ -5,6 +5,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: black;
+  /* display: flex;
+  align-items: center;
+  padding: 0%;
+  margin: 0%;
+  justify-content: center; */
+}
 /* *,
 ::before,
 ::after {
