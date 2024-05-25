@@ -2,7 +2,7 @@ import React from "react";
 
 const Navigation = () => {
   return (
-    <div className="border-b border-gray-500 md:border-none p-2 w-full min-[1920px]:w-3/5 sticky top-0 text-white list-none flex flex-col items-center justify-center md:flex-row md:items-center md:justify-around">
+    <div className="border-b border-gray-500 md:border-none p-2 w-full min-[1920px]:w-3/5 text-white list-none flex flex-col items-center justify-center md:flex-row md:items-center md:justify-around">
       <div className="my-4 md:hidden">
         <img className="w-full m-2" src="/tech-vave-dark-1-1@2x.png" alt="" />
       </div>
