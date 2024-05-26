@@ -4,7 +4,7 @@ import Highlight from "./highlight";
 
 const Recents = () => {
   return (
-    <div className="pb-6">
+    <div className="pb-6 w-fit">
       <h1 className="font-medium text-center w-full mt-12 md:mb-12 font-[Oswald] text-7xl text-white">
         Recently
       </h1>
