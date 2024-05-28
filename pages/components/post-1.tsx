@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Post = (props) => {
   return (
-    <div className="text-white hover:text-black text-center rounded-xl p-4 hover:shadow-lg shadow-none hover:shadow-white hover:backdrop-blur-md hover:bg-white bg-opacity-80 flex flex-col md:flex-col-reverse items-center justify-center w-fit h-fit  md:mx-20 xl:m-10 xl:hover:z-20 transition-all duration-200">
+    <div className="text-white hover:text-black text-center rounded-xl p-4 hover:shadow-lg shadow-none hover:shadow-white hover:backdrop-blur-md hover:bg-white bg-opacity-80 flex flex-col md:flex-col-reverse items-center justify-center w-fit h-fit  md:mx-20 md:mt-10 xl:m-10 xl:hover:z-20 transition-all duration-200">
       <div className="flex flex-col-reverse items-start justify-center">
         <li id="lists">Sharon</li>
         <li id="lists">1-29849-49</li>

@@ -1,6 +1,8 @@
 import Content from "./components/content";
+import CTA from "./components/cta";
 import Hero from "./components/hero";
 import Navigation from "./components/navigation";
+import Footer from "./footer";
 
 const Home = () => {
   return (
@@ -8,6 +10,8 @@ const Home = () => {
       <Navigation />
       <Hero />
       <Content />
+      <CTA />
+      <Footer />
     </main>
   );
 };
