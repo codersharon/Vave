@@ -6,14 +6,14 @@ const Navigation = () => {
       <div className="my-4 md:hidden">
         <img className="w-full m-2" src="/tech-vave-dark-1-1@2x.png" alt="" />
       </div>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default">Tech</li>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default">Business</li>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default">Science</li>
+      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#Tech">Tech</a></li>
+      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#Business">Business</a></li>
+      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#Science">Science</a></li>
       <div className="mx-1 hidden md:block">
         <img className="w-28" src="/tech-vave-dark-1-1@2x.png" alt="" />
       </div>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default">Join-us</li>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default">News-Letter</li>
+      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#join-us">Join-us</a></li>
+      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#news-letter">News-Letter</a></li>
       <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default">Log-in</li>
     </div>
   );

@@ -4,7 +4,7 @@ const CTA = () => {
   return (
     <div className="w-full bg-black text-black flex flex-col items-center justify-center p-2 lg:p-20">
       <div
-        id="form1"
+        id="join-us"
         className="slide-left focus-within-animate-ping flex flex-col items-center justify-center bg-[#C93EB3] p-5 font-medium m-10 w-full md:w-3/5 lg:w-4/12 h-fit"
       >
         <h1 className="text-5xl font-[Italiana]">Join-Us</h1>
@@ -40,7 +40,7 @@ const CTA = () => {
         </button>
       </div>
       <div
-        id="form1"
+        id="news-letter"
         className="slide-right focus-within-animate-ping flex flex-col items-center justify-center bg-[#C93EB3] p-5 font-medium m-10 w-full md:w-3/5 lg:w-4/12  h-fit"
       >
         <h1 className="text-5xl font-[Italiana]">News-Letter</h1>
