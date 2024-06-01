@@ -16,10 +16,10 @@ const PostSchema = new mongoose.Schema({
     required: false,
   },
   Category: {
-    type: String,
+    type: Array,
     required: [
       true,
-      "Please provide any of these [Tech, Business, Science, Entertainment] categories for these post",
+      "Please provide any of these [Tech, Business, Science, Entertainment, DailTopic, Highlight] categories for these post",
     ],
   },
   createdAt: {

@@ -9,9 +9,16 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      try {
-        const posts = await Post.find({Category: req.query.category});
+      try { if (req.query.category1==null) {
+        const posts = await Post.find({}).sort({createdAt: -1});
         res.status(200).json({ success: true, data: posts });
+      } else if (req.query.category1!) {
+          const posts = await Post.find({Category: req.query.category1}).sort({createdAt: -1});
+          res.status(200).json({ success: true, data: posts });
+        } else if(req.query.category2!) {
+          const posts = await Post.find({Category: [req.query.category1, req.query.category2]}).sort({createdAt: -1});;
+          res.status(200).json({ success: true, data: posts });
+        }
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
