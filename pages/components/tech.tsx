@@ -2,8 +2,6 @@ import React from "react";
 import Post from "./post-1";
 
 const Tech = ({ news }) => {
-  console.log("nrwskskk", news);
-  
   return (
     <div
       id="Tech"
