@@ -12,12 +12,14 @@ const Hero = (props) => {
         <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-around">
           <Topic
             key={topic1._id}
+            id={topics._id}
             title={topic1.title}
             image={topic1.image}
             content={topic1.content}
             auhtor={"Sharon"}
           />
           <Topic
+            id={topics._id}
             key={topic2._id}
             title={topic2.title}
             image={topic2.image}
@@ -25,6 +27,7 @@ const Hero = (props) => {
             auhtor={"Sharon"}
           />
           <Topic
+            id={topics._id}
             key={topic3._id}
             title={topic3.title}
             image={topic3.image}
