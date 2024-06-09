@@ -10,29 +10,39 @@ export async function getServerSideProps(context) {
   return { props: { post } };
 }
 export default function Page({ post }) {
-  console.log(post.content.length);
   return (
     <main>
-      <div className="p-2 w-full text-white list-none flex flex-col items-center justify-center md:flex-row">
-        {/* <div className="mx-1 md:mx-0 md:my-4 hidden md:block">
-          <img
-            id="Home"
-            className="w-28"
-            src="/tech-vave-dark-1-1@2x.png"
-            alt=""
-          />
-        </div> */}
-      </div>
-      <div className="text-white flex flex-col item-center justify-center w-full pt-40">
+      <div className="text-white flex flex-col items-start justify-end w-full pt-40">
         <img
           id="Home"
           className="w-28"
           src="/tech-vave-dark-1-1@2x.png"
           alt=""
         />
-
+        <div className="agrid aagrid-cols-3 w-fit absolute right-8 top-20 bg-red-500 text-white p-4 mt-10 ml-20 -mb-32 z-10 rounded-md border-2 border-black">
+          <h1 className="font-[Oswald] text-4xl">Mentioned Links</h1>
+          <li className="hover:text-blue-600 font-[Inter] text-lg underline">
+            google.com
+          </li>
+          <li className="hover:text-blue-600 font-[Inter] text-lg underline">
+            google.com
+          </li>
+          <li className="hover:text-blue-600 font-[Inter] text-lg underline">
+            google.com
+          </li>
+          <li className="hover:text-blue-600 font-[Inter] text-lg underline">
+            google.com
+          </li>
+          <li className="hover:text-blue-600 font-[Inter] text-lg underline">
+            apple.com
+          </li>
+          <li className="hover:text-blue-600 font-[Inter] text-lg underline">
+            microsoft.com
+          </li>
+        </div>
         <div className="flex flex-col items-center justify-center w-fit mt-12 bg-fuchsia-500 text-black">
           <div className="flex flex-col items-start justify-center w-1/2 -mt-48">
+            {/* <li className="text-white">kjskskaa</li> */}
             <div className="flex items-center justify-around text-white">
               <li className="mx-2">{post.createdAt.slice(0, 10)}</li>
               <li className="mx-2">{post.links}google.com</li>
