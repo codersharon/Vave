@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI =
-  "mongodb+srv://sharonsandeep46655:N8NkUUxgF73MSTaX@vavedb.w3ujkzd.mongodb.net/?retryWrites=false&w=majority";
+const MONGODB_URI = process.env.MONGO_URI
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -25,7 +24,7 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(`mongodb+srv://sharonsandeep46655:${MONGODB_URI}@vavedb.w3ujkzd.mongodb.net/?retryWrites=false&w=majority`, opts).then((mongoose) => {
       return mongoose;
     });
   }
