@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Navigation = () => {
@@ -6,15 +7,50 @@ const Navigation = () => {
       <div className="my-4 md:hidden">
         <img className="w-full m-2" src="/tech-vave-dark-1-1@2x.png" alt="" />
       </div>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#Tech">Tech</a></li>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#Business">Business</a></li>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#Science">Science</a></li>
+      <Link
+        href={"/#Tech"}
+        className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"
+      >
+        Tech
+      </Link>
+      <Link
+        className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"
+        href={"/#Business"}
+      >
+        Business
+      </Link>
+      <Link
+        className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"
+        href={"/#Science"}
+      >
+        Science
+      </Link>
       <div className="mx-1 hidden md:block">
-        <img id="Home" className="w-28" src="/tech-vave-dark-1-1@2x.png" alt="" />
+        <img
+          id="Home"
+          className="w-28"
+          src="/tech-vave-dark-1-1@2x.png"
+          alt=""
+        />
       </div>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#join-us">Join-us</a></li>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"><a href="#news-letter">News-Letter</a></li>
-      <li className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default">Log-in</li>
+      <Link
+        className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"
+        href={"/#join-us"}
+      >
+        Join-us
+      </Link>
+      <Link
+        className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"
+        href={"/#news-letter"}
+      >
+        News-Letter
+      </Link>
+      <Link
+        href={"/log-in"}
+        className="my-2 text-2xl md:text-md md:mx-1 hover:underline cursor-default"
+      >
+        Log-in
+      </Link>
     </div>
   );
 };
