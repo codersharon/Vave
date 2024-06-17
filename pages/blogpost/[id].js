@@ -53,26 +53,24 @@ export default function Page({ post }) {
               <li className="mx-2">{post.createdAt.slice(0, 10)}</li>
             </div>
             <div>
-              {post.image ? (
-                <div className="flex items-center justify-center">
-                  <img
-                    src={"/Post_Background.jpg"}
-                    className="w-[420px] h-[480px] rounded"
-                    alt="Image"
-                  />
-                  <img
-                    src={post.image}
-                    className="w-[400px] h-[400px] rounded z-10 -ml-96"
-                    alt="Image"
-                  />
-                </div>
-              ) : (
+              <div
+                className="rounded-xl flex items-center justify-center w-[420px] h-[480px]"
+                style={{
+                  // background: 'orange',
+                  backgroundImage: `url('/Post_Background.jpg')`,
+                  backgroundRepeat: `repeat`,
+                  backgroundSize: "25%",
+                }}
+              >
                 <img
-                  src={"/Post_Background.jpg"}
-                  className="w-[420px] h-[480px] rounded"
+                  src={post.image}
+                  // src={
+                  //   "https://www.hindustantimes.com/ht-img/img/2024/05/07/550x309/TESLA-SWEDEN-STRIKE-0_1713176497238_1715048731144.JPG"
+                  // }
+                  className="w-[420px] h-[480px]"
                   alt="Image"
                 />
-              )}
+              </div>
             </div>
           </div>
           <div className="flex flex-col items-start justify-center w-full mx-10 md:w-1/2 -mt-4">

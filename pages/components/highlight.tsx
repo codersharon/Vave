@@ -6,14 +6,12 @@ const Highlight = ({ title, content, image, id }) => {
       <div className="w-56 h-60 md:w-60 md:h-72 xl:w-80 md: xl:h-96 bg-purple-400 rounded-md">
         <img
           className="w-full h-full rounded"
-          src={image}
+          src={image ? image : "/Post_Background.jpg"}
           alt="highlight"
         />
       </div>
       <div className="w-56 md:w-60 xl:w-80 bg-white p-4 rounded-md -mt-4">
-        <h1 className="text-3xl font-[Newsreader] text-black">
-          {title}
-        </h1>
+        <h1 className="text-3xl font-[Newsreader] text-black">{title}</h1>
       </div>
     </div>
   );

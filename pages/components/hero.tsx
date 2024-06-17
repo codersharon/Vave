@@ -3,6 +3,7 @@ import Topic from "./topic";
 
 const Hero = (props) => {
   const [topics, setTopics] = useState(props ? props.topics : []);
+  // const [topics, setTopics] = useState();
   const topic1 = topics[0];
   const topic2 = topics[1];
   const topic3 = topics[2];
@@ -11,33 +12,31 @@ const Hero = (props) => {
       {topics ? (
         <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-around">
           <Topic
-            key={topic1._id}
-            id={topics._id}
-            title={topic1.title}
-            image={topic1.image}
+            id={topic1._id ? topic1._id : ""}
+            title={topic1.title.slice(0, 32) + "..."}
+            image={topic1.image ? topic1.image : "/Post_Background.jpg"}
             content={topic1.content}
             auhtor={"Sharon"}
+            key={topic1._id}
           />
           <Topic
-            id={topics._id}
-            key={topic2._id}
-            title={topic2.title}
-            image={topic2.image}
+            id={topic2._id ? topic2._id : ""}
+            title={topic2.title.slice(0, 32) + "..."}
+            image={topic2.image ? topic2.image : "/Post_Background.jpg"}
             content={topic2.content}
             auhtor={"Sharon"}
+            key={topic2._id}
           />
           <Topic
-            id={topics._id}
-            key={topic3._id}
-            title={topic3.title}
-            image={topic3.image}
+            id={topic3._id ? topic3._id : ""}
+            title={topic3.title.slice(0, 32) + "..."}
+            image={topic1.image ? topic3.image : "/Post_Background.jpg"}
             content={topic3.content}
             auhtor={"Sharon"}
+            key={topic3._id}
           />
         </div>
-      ) : (
-        <h1>Hello World!</h1>
-      )}
+      ) : null}
     </div>
   );
 };
