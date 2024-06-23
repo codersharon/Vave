@@ -21,7 +21,7 @@ export default function Page({ post }) {
 
   return (
     <main>
-      <div className="text-white flex flex-col items-center justify-start md:items-start md:justify-end w-full pt-5 md:pt-20">
+      <div className="h-full text-white flex flex-col items-center justify-start md:items-start md:justify-end w-full pt-5 md:pt-20">
         <Link href={"/"}>
           <img
             id="Home"
@@ -31,7 +31,7 @@ export default function Page({ post }) {
           />
         </Link>
         {Link ? (
-          <div className="hidden md:block w-fit absolute right-8 top-20 bg-red-500 text-white p-4 mt-10 ml-20 -mb-32 z-10 rounded-md border-2 border-black">
+          <div className="hidden lg:block w-fit absolute right-8 top-20 bg-red-500 text-white p-4 mt-10 ml-20 -mb-32 z-10 rounded-md border-2 border-black">
             <h1 className="font-[Oswald] text-4xl">Mentioned Links</h1>
             {post.links.map((link) => {
               return (
@@ -42,11 +42,11 @@ export default function Page({ post }) {
             })}
           </div>
         ) : (
-          <div className="hidden md:block w-fit absolute right-8 top-20 bg-red-500 text-white p-4 mt-10 ml-20 -mb-32 z-10 rounded-md border-2 border-black">
+          <div className="hidden lg:block w-fit absolute right-8 top-20 bg-red-500 text-white p-4 mt-10 ml-20 -mb-32 z-10 rounded-md border-2 border-black">
             <h1 className="font-[Oswald] text-4xl">No Links Mentioned</h1>
           </div>
         )}
-        <div className="flex flex-col items-center justify-center w-full mt-12 bg-fuchsia-500 text-black px-4 pb-20">
+        <div className="flex flex-col items-center justify-center w-full h-full mt-12 bg-fuchsia-500 text-black px-4 pb-20">
           <div className="flex flex-col items-start justify-center w-full md:w-1/2 md:-mt-48">
             {/* <li className="text-white">kjskskaa</li> */}
             <div className="flex items-center justify-around text-black md:text-white p-4 underline font-[NewsReader]">
@@ -82,8 +82,8 @@ export default function Page({ post }) {
           <li className="mx-2 list-none font-[NewsReader]">
             {post.author}- Sharon
           </li>
-          {Link ? (
-            <div className="md:hidden w-full bg-red-500 text-white p-4 mt-20 z-10 rounded-md border-2 border-black">
+          {Link? (
+            <div className="lg:hidden w-full bg-red-500 text-white p-4 mt-20 z-10 rounded-md border-2 border-black">
               <h1 className="font-[Oswald] text-4xl">Mentioned Links</h1>
               <div className="grid grid-cols-2">
                 {post.links.map((link) => {
@@ -99,7 +99,7 @@ export default function Page({ post }) {
               </div>
             </div>
           ) : (
-            <div className="md:hidden w-full bg-red-500 text-white p-4 mt-20 z-10 rounded-md border-2 border-black">
+            <div className="lg:hidden w-full bg-red-500 text-white p-4 mt-20 z-10 rounded-md border-2 border-black">
               <h1 className="font-[Oswald] text-4xl">No Links Mentioned</h1>
             </div>
           )}

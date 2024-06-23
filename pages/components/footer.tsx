@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="flex items-center justify-start w-full p-4 bg-black text-white">
+    <div className="h-fit flex items-center justify-start w-full p-4 bg-black text-white">
       <Link href={"/"}>
         <img
           src="/tech-vave-dark-1-1@2x.png"
