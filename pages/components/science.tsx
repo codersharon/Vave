@@ -7,7 +7,7 @@ const Science = ({ news }) => {
       id="Science"
       className="slide-right zoom flex flex-col items-center justify-center bg-[#C93EB3] text-center w-full"
     >
-      <h1 className="font-[Oswald] text-5xl text-white mt-6">Science</h1>
+      <h1 className="font-[Oswald] text-5xl mt-6 text-[#5b2052] text-opacity-60">Science</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {news ? (
           news.map(({ image, content, title, createdAt, _id }) => {
