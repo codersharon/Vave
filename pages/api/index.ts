@@ -15,6 +15,9 @@ export default async function handler(req, res) {
             Category: { $nin: ["dailyhighlight", "dailytopic"] },
           }).sort({ createdAt: -1 });
           res.status(200).json(posts);
+        } else if (req.query.category1 == "all") {
+          const posts = await Post.find({}).sort({ createdAt: -1 });
+          res.status(200).json(posts);
         } else if (req.query.category1!) {
           const posts = await Post.find({ Category: req.query.category1 }).sort(
             { createdAt: -1 }

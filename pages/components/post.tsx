@@ -16,6 +16,9 @@ const Post = ({ title, image, createdAt, id }) => {
         <h1 className="mx-5 hover:underline text-xl h-full font-bold font-[Oswald] lg:text-3xl text-white">
           {title.slice(0,32)}...
         </h1>
+        <h1 className="hidden md:block md:-ml-[190px] lg:-ml-[266px] xl:-ml-[286px] mt-2 hover:text-cyan-600 z-20 text-xl h-full font-bold font-[Oswald] lg:text-3xl text-transparent">
+          {title.slice(0,32)}...
+        </h1>
       </div>
     </Link>
   );
