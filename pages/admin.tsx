@@ -33,46 +33,25 @@ const Admin = ({ posts }) => {
   };
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="bg-orange-500 p-4 rounded m-5 w-1/2 flex items-start justify-center">
-        <div className="bg-gray-300 rounded-lg w-[320px] h-[320px] flex items-center justify-center">
-          {/* <h1>Upload An Image!</h1> */}
-          <input type="file" name="" id="" />
+      <div className="bg-orange-700 w-10/12 p-5">
+        <div className="flex items-center justify-between w-full">
+          <h1 className="font-[Inter] border-b-4 border-black font-extrabold xl:text-4xl ">
+            Create
+          </h1>
+          <button className="bg-purple-600 p-2 rounded-xl font-semibold font-[Inter] hover:bg-purple-700 hover:shadow-lg hover:shadow-black ">
+            Submit
+          </button>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <input
-            id="title"
-            name="title"
-            onChange={OnChange}
-            type="text"
-            className="p-2 font-[Inter] rounded m-2 outline-none"
-            placeholder="Title"
-          />
-          <textarea
-            id="content"
-            name="content"
-            onChange={OnChange}
-            className="p-2 font-[NewsReader] rounded m-2 outline-none"
-            placeholder="Content"
-          />
+        <div className="flex items-start justify-center w-full h-fulll">
+          <div className="bg-gray-400 w-1/2 rounded-md">s</div>
+          <div className="flex flex-col items-center justify-start">
+            <textarea
+              name="Content"
+              id="Content"
+              className="bg-gray-400 rounded-md"
+            ></textarea>
+          </div>
         </div>
-      </div>
-      <div className="bg-orange-500 p-4 rounded m-5 w-1/2">
-        <h1 className="text-4xl font-bold font-[Inter]">All Posts</h1>
-        {posts ? (
-          posts.map(({ title, image, createdAt, _id }) => {
-            return (
-              <Post
-                title={title}
-                image={image}
-                createdAt={createdAt}
-                id={_id}
-                key={_id}
-              />
-            );
-          })
-        ) : (
-          <h1>No Post Found</h1>
-        )}
       </div>
     </div>
   );
