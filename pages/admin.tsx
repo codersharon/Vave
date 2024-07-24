@@ -65,25 +65,25 @@ const Admin = ({ posts }) => {
                 name="Content"
                 id="Content"
                 className="min-h-28 max-h-72 w-full font-[NewsReader] bg-gray-400 text-gray-700 rounded-md outline-none p-4"
-              ></textarea>
+              ></textarea>{" "}
+              <div className="my-10 grid-flow-col text-center w-full">
+                <button className="mx-2 my-2 w-full md:w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-yellow-500 ">
+                  DailyHilight
+                </button>
+                <button className="mx-2 my-2 w-full md:w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-green-500 ">
+                  DailyTopic
+                </button>
+                <button className="mx-2 my-2 w-full md:w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-white ">
+                  Tech
+                </button>
+                <button className="mx-2 my-2 w-full md:w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-blue-500 ">
+                  Business
+                </button>
+                <button className="mx-2 my-2 w-full md:w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-[#C93EB3] ">
+                  Science
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="my-10 flex items-center justify-around w-full">
-            <button className="mx-2 bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-yellow-500 ">
-              DailyHilight
-            </button>
-            <button className="mx-2 bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-green-500 ">
-              DailyTopic
-            </button>
-            <button className="mx-2 bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-white ">
-              Tech
-            </button>
-            <button className="mx-2 bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-blue-500 ">
-              Business
-            </button>
-            <button className="mx-2 bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-[#C93EB3] ">
-              Science
-            </button>
           </div>
         </div>
       </div>
