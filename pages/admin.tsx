@@ -98,12 +98,25 @@ const Admin = ({ posts }) => {
           <div className="flex flex-col items-start justify-center mt-10">
             {posts.map(({ title, image, createdAt, _id }) => {
               const deletePost = async () => {
-                const res = await fetch(`/api/post?id=${_id}`, {
-                  method: "DELETE",
-                });
+                if (
+                  confirm(
+                    "Are you sure you want to delete this post from the VAVE database?"
+                  )
+                ) {
+                  // Save it!
+                  const res = await fetch(`/api/post?id=${_id}`, {
+                    method: "DELETE",
+                  });
 
-                const result = await res.json();
-                alert("Post Has Been Deleted");
+                  const result = await res.json();
+                  alert("This post was deleted from the VAVE database.");
+                  router.reload()
+                } else {
+                  // Do nothing!
+                  alert(
+                    "This post was not deleted from the VAVE database."
+                  );
+                }
               };
               return (
                 <div
