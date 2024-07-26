@@ -11,7 +11,7 @@ const Hero = (props) => {
     <div className="border-b border-white mt-12 pb-10 w-full min-[1920px]:w-3/5 flex flex-col items-center justify-center">
       {topics ? (
         <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-around">
-          <Topic
+          {/* <Topic
             id={topic1._id ? topic1._id : ""}
             title={topic1.title.slice(0, 32) + "..."}
             image={topic1.image ? topic1.image : "/Post_Background.jpg"}
@@ -34,7 +34,7 @@ const Hero = (props) => {
             content={topic3.content}
             auhtor={"Sharon"}
             key={topic3._id}
-          />
+          /> */}
         </div>
       ) : null}
     </div>
