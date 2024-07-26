@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
     required: [true, "Please provide a title for this post."],
     maxlength: [60, "Title cannot be more than 60 characters"],
   },
-  postimg: {
+  image: {
     type: [String, null],
     required: false,
   },

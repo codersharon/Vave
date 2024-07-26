@@ -77,12 +77,18 @@ export default function Page({ post }) {
             <h1 className="font-[Impact] text-5xl" id="title">
               {post.title}
             </h1>
-            <p className="text-xl font-[NewsReader]">{post.content}</p>
+            <p
+              className="text-xl font-[NewsReader] first-line:uppercase first-line:tracking-widest
+  first-letter:text-7xl first-letter:font-bold first-letter:font-[NewsReader]
+  first-letter:mr-3 first-letter:float-left"
+            >
+              {post.content}
+            </p>
           </div>
           <li className="mx-2 list-none font-[NewsReader]">
             {post.author}- Sharon
           </li>
-          {Link? (
+          {Link ? (
             <div className="lg:hidden w-full bg-red-500 text-white p-4 mt-20 z-10 rounded-md border-2 border-black">
               <h1 className="font-[Oswald] text-4xl">Mentioned Links</h1>
               <div className="grid grid-cols-2">
