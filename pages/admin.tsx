@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Post from "./components/post";
 import Navigation from "./components/navigation";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Admin = ({ posts }) => {
   const router = useRouter();
@@ -10,30 +11,60 @@ const Admin = ({ posts }) => {
     title: "",
     content: "",
     image: "",
-    category: "",
+    // category: [],
   });
 
-  function AddPost(img, title, content, category) {
-    const res = fetch("/api/", {
-      method: "POST",
-      body: JSON.stringify({
-        postimg: img,
-        title: title,
-        content: content,
-        Category: category,
-      }),
+  const [categories, setCategories] = useState([]);
+
+  async function AddPost(title, content) {
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/json",
+    };
+
+    let bodyContent = JSON.stringify({
+      "image": "",
+      "title": title,
+      "content": content,
+      "Category": categories,
     });
+
+    let response = await fetch("http://localhost:3000/api/", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    });
+
+    let data = await response.json();
+    console.log(data);
+      alert("Post Uploaded");
+    router.reload();
   }
 
   const OnChange = (e) => {
     setNewPost({ ...newPost, [e.target.name]: e.target.value });
   };
 
+  const OnCategories = (e) => {
+    // if (categories.includes(e.target.name) == true) {
+    //   let arr = categories;
+    //   delete arr[arr.indexOf(e.target.name)];
+    //   console.log(arr);
+    //   setCategories(arr);
+    //   e.target.style.background = "transparent";
+    //   e.target.style.color = "black";
+    // } else
+    if (categories.includes(e.target.name) == false) {
+      const n = e.target.name
+      setCategories(categories.concat(n.toLowerCase()));
+      e.target.style.background = "black";
+      e.target.style.color = "white";
+    }
+  };
+
   const handleSave = () => {
-    AddPost(newPost.image, newPost.title, newPost.content, newPost.category);
-    // document.getElementById("title1").value = "";
-    // document.getElementById("description1").value = "";
-    // document.getElementById("tags1").value = "";
+    AddPost(newPost.title, newPost.content);
   };
 
   return (
@@ -45,7 +76,10 @@ const Admin = ({ posts }) => {
             <h1 className="ml-[40%] md:ml-[45%] font-[Inter] border-b-4 border-black font-extrabold text-3xl xl:text-4xl ">
               Create
             </h1>
-            <button className="bg-slate-950 p-2 rounded-xl font-semibold font-[Inter] hover:animate-bounce text-white ">
+            <button
+              onClick={handleSave}
+              className="bg-slate-950 p-2 rounded-xl font-semibold font-[Inter] hover:animate-bounce text-white "
+            >
               Submit
             </button>
           </div>
@@ -61,28 +95,50 @@ const Admin = ({ posts }) => {
               <input
                 type="text"
                 id="title"
+                onChange={OnChange}
                 name="title"
                 className="w-full text-3xl font-extrabold bg-transparent font-[Inter] outline-none p-2 mb-2"
               />
               <textarea
-                name="Content"
-                id="Content"
+                name="content"
+                id="content"
+                onChange={OnChange}
                 className="min-h-28 max-h-72 w-full font-[NewsReader] bg-gray-400 text-gray-700 rounded-md outline-none p-4"
               ></textarea>
               <div className="my-10 grid-flow-col text-center md:w-full">
-                <button className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-yellow-500 ">
-                  DailyHilight
+                <button
+                  name="DailyHighlight"
+                  onClick={OnCategories}
+                  className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-yellow-500 "
+                >
+                  DailyHighlight
                 </button>
-                <button className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-green-500 ">
+                <button
+                  name="DailyTopic"
+                  onClick={OnCategories}
+                  className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-green-500 "
+                >
                   DailyTopic
                 </button>
-                <button className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-white ">
+                <button
+                  name="Tech"
+                  onClick={OnCategories}
+                  className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-white "
+                >
                   Tech
                 </button>
-                <button className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-blue-500 ">
+                <button
+                  name="Business"
+                  onClick={OnCategories}
+                  className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-blue-500 "
+                >
                   Business
                 </button>
-                <button className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-[#C93EB3] ">
+                <button
+                  name="Science"
+                  onClick={OnCategories}
+                  className="mx-2 my-2 w-fit bg-transparent border-white border-2 p-2 font-semibold font-[Inter] hover:bg-[#C93EB3] "
+                >
                   Science
                 </button>
               </div>
@@ -110,44 +166,44 @@ const Admin = ({ posts }) => {
 
                   const result = await res.json();
                   alert("This post was deleted from the VAVE database.");
-                  router.reload()
+                  router.reload();
                 } else {
                   // Do nothing!
-                  alert(
-                    "This post was not deleted from the VAVE database."
-                  );
+                  alert("This post was not deleted from the VAVE database.");
                 }
               };
               return (
-                <div
-                  key={_id}
-                  className="hover:bg-orange-800 decoration-white w-full border-b-2 p-10 border-white flex items-start justify-start"
-                >
-                  <div className="flex flex-col items-start justify-start p-1">
-                    <img
-                      className="rounded w-[120px] h-[120px] m-2"
-                      src={image ? image : "/Post_Background.jpg"}
-                      alt="post"
-                    />
-                    <li className="text-white w-full">
-                      {createdAt.slice(0, 10)}
-                    </li>
-                  </div>
-                  <h1 className="mx-5 hover:underline text-xl h-full font-bold font-[Oswald] lg:text-3xl text-white">
-                    {title.slice(0, 36)}...
-                  </h1>
-                  <button onClick={deletePost} className="hover:animate-pulse">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="24px"
-                      viewBox="0 -960 960 960"
-                      width="24px"
-                      fill="#e8eaed"
+                <Link href={"/blogpost/"+_id} key={_id}>
+                  <div className="hover:bg-orange-800 decoration-white w-full border-b-2 p-10 border-white flex items-start justify-start">
+                    <div className="flex flex-col items-start justify-start p-1">
+                      <img
+                        className="rounded w-[120px] h-[120px] m-2"
+                        src={image ? image : "/Post_Background.jpg"}
+                        alt="post"
+                      />
+                      <li className="text-white w-full">
+                        {createdAt.slice(0, 10)}
+                      </li>
+                    </div>
+                    <h1 className="mx-5 hover:underline text-xl h-full font-bold font-[Oswald] lg:text-3xl text-white">
+                      {title.slice(0, 36)}...
+                    </h1>
+                    <button
+                      onClick={deletePost}
+                      className="hover:animate-pulse"
                     >
-                      <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                    </svg>
-                  </button>
-                </div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#e8eaed"
+                      >
+                        <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                      </svg>
+                    </button>
+                  </div>
+                </Link>
               );
             })}
           </div>

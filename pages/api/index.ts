@@ -36,7 +36,8 @@ export default async function handler(req, res) {
     case "POST":
       try {
         const post = await Post.create(req.body);
-        res.status(201).json(post);
+        // console.log(req.body);
+        res.json(post);
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
