@@ -10,13 +10,13 @@ const Admin = ({ posts }) => {
   const [newPost, setNewPost] = useState({
     title: "",
     content: "",
-    image: "",
+    imageURL: "",
     // category: [],
   });
 
   const [categories, setCategories] = useState([]);
 
-  async function AddPost(title, content) {
+  async function AddPost(imageURL, title, content) {
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
@@ -24,10 +24,10 @@ const Admin = ({ posts }) => {
     };
 
     let bodyContent = JSON.stringify({
-      "image": "",
-      "title": title,
-      "content": content,
-      "Category": categories,
+      image: imageURL,
+      title: title,
+      content: content,
+      Category: categories,
     });
 
     let response = await fetch("http://localhost:3000/api/", {
@@ -38,7 +38,7 @@ const Admin = ({ posts }) => {
 
     let data = await response.json();
     console.log(data);
-      alert("Post Uploaded");
+    alert("Post Uploaded");
     router.reload();
   }
 
@@ -56,15 +56,15 @@ const Admin = ({ posts }) => {
     //   e.target.style.color = "black";
     // } else
     if (categories.includes(e.target.name) == false) {
-      const n = e.target.name
+      const n = e.target.name;
       setCategories(categories.concat(n.toLowerCase()));
-      e.target.style.background = "black";
-      e.target.style.color = "white";
+      e.target.style.background = "white";
+      e.target.style.color = "black";
     }
   };
 
   const handleSave = () => {
-    AddPost(newPost.title, newPost.content);
+    AddPost(newPost.imageURL, newPost.title, newPost.content);
   };
 
   return (
@@ -84,26 +84,37 @@ const Admin = ({ posts }) => {
             </button>
           </div>
           <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-center md:justify-between w-full h-full">
-            <div className="bg-gray-400 w-full md:w-1/2 rounded-md h-fit">
+            <div className="p-2 bg-black w-full md:w-1/2 rounded-md h-fit">
+              <input
+                type="text"
+                placeholder="Image RUL"
+                id="imageURL"
+                onChange={OnChange}
+                name="imageURL"
+                className="w-full text-xl font-bold bg-white rounded font-[Inter] outline-none p-2 mb-2"
+              />
               <img
                 className="rounded-md"
-                src="https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/750x500/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/22888569/acastro_210929_4779_0001.jpg"
+                src={newPost.imageURL}
                 alt=""
               />
             </div>
-            <div className="w-full md:w-1/2 flex flex-col items-center justify-start mx-2">
+            <div className="rounded-lg p-2 bg-black text-white w-full md:w-1/2 flex flex-col items-center justify-start mx-2">
               <input
                 type="text"
                 id="title"
                 onChange={OnChange}
+                maxLength={60}
                 name="title"
-                className="w-full text-3xl font-extrabold bg-transparent font-[Inter] outline-none p-2 mb-2"
+                placeholder="Title"
+                className="rounded text-black bg-orange-700 w-full text-3xl font-extrabold font-[Inter] outline-none p-2 mb-2"
               />
               <textarea
                 name="content"
+                placeholder="Content..."
                 id="content"
                 onChange={OnChange}
-                className="min-h-28 max-h-72 w-full font-[NewsReader] bg-gray-400 text-gray-700 rounded-md outline-none p-4"
+                className="min-h-28 max-h-72 w-full font-[NewsReader] bg-white text-gray-700 rounded-md outline-none p-4"
               ></textarea>
               <div className="my-10 grid-flow-col text-center md:w-full">
                 <button
@@ -173,7 +184,7 @@ const Admin = ({ posts }) => {
                 }
               };
               return (
-                <Link href={"/blogpost/"+_id} key={_id}>
+                <Link href={"/blogpost/" + _id} key={_id}>
                   <div className="hover:bg-orange-800 decoration-white w-full border-b-2 p-10 border-white flex items-start justify-start">
                     <div className="flex flex-col items-start justify-start p-1">
                       <img
