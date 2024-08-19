@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Highlight = ({ title, content, image, id }) => {
@@ -8,6 +9,7 @@ const Highlight = ({ title, content, image, id }) => {
     setPostImg("/Post_Background.jpg");
   }
   return (
+    <Link href={`/blogpost/${id}`}>
     <div className="w-fit h-fit mt-40">
       <div className="w-56 h-60 md:w-60 md:h-72 xl:w-80 md: xl:h-96 bg-purple-400 rounded-md">
         <img className="w-full h-full rounded" src={postImg} alt="highlight" />
@@ -16,6 +18,7 @@ const Highlight = ({ title, content, image, id }) => {
         <h1 className="text-3xl font-[Newsreader] text-black">{title}</h1>
       </div>
     </div>
+    </Link>
   );
 };
 

@@ -15,6 +15,7 @@ const Admin = ({ posts }) => {
   });
 
   const [categories, setCategories] = useState([]);
+  const [links, setLinks] = useState([]);
 
   async function AddPost(imageURL, title, content) {
     let headersList = {
@@ -28,16 +29,16 @@ const Admin = ({ posts }) => {
       title: title,
       content: content,
       Category: categories,
+      links: links,
     });
 
-    let response = await fetch("http://localhost:3000/api/", {
+    let response = await fetch("/api/", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
     });
 
     let data = await response.json();
-    console.log(data);
     alert("Post Uploaded");
     router.reload();
   }
@@ -63,10 +64,25 @@ const Admin = ({ posts }) => {
     }
   };
 
-  const handleSave = () => {
-    AddPost(newPost.imageURL, newPost.title, newPost.content);
-  };
 
+  function extractHttpsLinks(text) {
+    // Regular expression to match HTTPS links
+    const regex = /https:\/\/[^\s/$.?#].[^\s]*/g;
+
+    // Find all matches in the text
+    const matches = text.match(regex);
+
+    // Return the array of matches or an empty array if none found
+    return matches;
+  }
+  
+  const handleSave = () => {
+    const text = newPost.content;
+    const link = extractHttpsLinks(text)
+    AddPost(newPost.imageURL, newPost.title, newPost.content);
+    setLinks(links.concat(link))
+  };
+  
   return (
     <div>
       <Navigation />
@@ -87,17 +103,13 @@ const Admin = ({ posts }) => {
             <div className="p-2 bg-black w-full md:w-1/2 rounded-md h-fit">
               <input
                 type="text"
-                placeholder="Image RUL"
+                placeholder="Image URL"
                 id="imageURL"
                 onChange={OnChange}
                 name="imageURL"
                 className="w-full text-xl font-bold bg-white rounded font-[Inter] outline-none p-2 mb-2"
               />
-              <img
-                className="rounded-md"
-                src={newPost.imageURL}
-                alt=""
-              />
+              <img className="rounded-md" src={newPost.imageURL} alt="" />
             </div>
             <div className="rounded-lg p-2 bg-black text-white w-full md:w-1/2 flex flex-col items-center justify-start mx-2">
               <input
@@ -167,7 +179,7 @@ const Admin = ({ posts }) => {
               const deletePost = async () => {
                 if (
                   confirm(
-                    "Are you sure you want to delete this post from the VAVE database?"
+                    "Are you sure you want to delete this post from the VAVE database?",
                   )
                 ) {
                   // Save it!
@@ -224,9 +236,12 @@ const Admin = ({ posts }) => {
   );
 };
 export const getServerSideProps = async () => {
-  const res = await fetch("http:localhost:3000/api?category1=all", {
-    method: "GET",
-  });
+  const res = await fetch(
+    "https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api?category1=all",
+    {
+      method: "GET",
+    },
+  );
   const posts = await res.json();
   return {
     props: { posts },

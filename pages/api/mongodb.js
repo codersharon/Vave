@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGO_URI
+const mySecret = process.env['MONGODB_URI'];
 
-if (!MONGODB_URI) {
+if (!mySecret) {
   throw new Error(
     "Please define the MONGODB_URI environment variable inside .env.local"
   );
@@ -24,7 +24,7 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(`mongodb+srv://sharonsandeep46655:${MONGODB_URI}@vavedb.w3ujkzd.mongodb.net/?retryWrites=false&w=majority`, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(`mongodb+srv://sharonsandeep46655:${mySecret}@vavedb.w3ujkzd.mongodb.net/?retryWrites=false&w=majority`, opts).then((mongoose) => {
       return mongoose;
     });
   }

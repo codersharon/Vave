@@ -17,20 +17,20 @@ const Home = ({ topics, highlights, posts, news }) => {
 };
 
 export const getServerSideProps = async () => {
-  const res1 = await fetch("http:localhost:3000/api?category1=dailytopic", {
+  const res1 = await fetch("https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api?category1=dailytopic", {
     method: "GET",
   });
-  const res2 = await fetch("http:localhost:3000/api/", { method: "GET" });
-  const res3 = await fetch("http:localhost:3000/api?category1=dailyhighlight", {
+  const res2 = await fetch("https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api/", { method: "GET" });
+  const res3 = await fetch("https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api?category1=dailyhighlight", {
     method: "GET",
   });
-  const Nres1 = await fetch("http:localhost:3000/api?category1=tech", {
+  const Nres1 = await fetch("https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api?category1=tech", {
     method: "GET",
   });
-  const Nres2 = await fetch("http:localhost:3000/api?category1=business", {
+  const Nres2 = await fetch("https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api?category1=business", {
     method: "GET",
   });
-  const Nres3 = await fetch("http:localhost:3000/api?category1=science", {
+  const Nres3 = await fetch("https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api?category1=science", {
     method: "GET",
   });
   const topics = await res1.json();
