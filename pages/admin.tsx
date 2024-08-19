@@ -11,13 +11,11 @@ const Admin = ({ posts }) => {
     title: "",
     content: "",
     imageURL: "",
-    // category: [],
   });
 
   const [categories, setCategories] = useState([]);
-  const [links, setLinks] = useState([]);
 
-  async function AddPost(imageURL, title, content) {
+  async function AddPost(imageURL, title, content, links) {
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
@@ -76,11 +74,10 @@ const Admin = ({ posts }) => {
     return matches;
   }
   
-  const handleSave = () => {
+  const handleSave = async() => {
     const text = newPost.content;
-    const link = extractHttpsLinks(text)
-    AddPost(newPost.imageURL, newPost.title, newPost.content);
-    setLinks(links.concat(link))
+    const links = await extractHttpsLinks(text)
+    await AddPost(newPost.imageURL, newPost.title, newPost.content, links);
   };
   
   return (
@@ -237,7 +234,7 @@ const Admin = ({ posts }) => {
 };
 export const getServerSideProps = async () => {
   const res = await fetch(
-    "https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api?category1=all",
+    "http://localhost:3000/api?category1=all",
     {
       method: "GET",
     },

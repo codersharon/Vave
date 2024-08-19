@@ -7,7 +7,7 @@ export async function getServerSideProps(context) {
   // Fetch data from external API
   const id = context.query.id;
   // const res = await fetch("https://api.github.com/repos/vercel/next.js");
-  const res = await fetch(`https://837e0226-7ed3-4449-ac31-894d3f9dc9c6-00-1hs8ogvjhzxzs.sisko.replit.dev/api/post?id=${id}`);
+  const res = await fetch(`http://localhost:3000/api/post?id=${id}`);
   const post = await res.json();
   // Pass data to the page via props
   return { props: { post } };
