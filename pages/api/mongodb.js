@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mySecret = process.env.MONGO_URI
+const mySecret = process.env.MONGODB_URI
 
 if (!mySecret) {
   throw new Error(

@@ -31,12 +31,32 @@ export default function Page({ post }) {
           />
         </Link>
         {Link ? (
-          <div className="hidden lg:block w-fit absolute right-8 top-20 bg-red-500 text-white p-4 mt-10 ml-20 -mb-32 z-10 rounded-md border-2 border-black">
+          <div className="hidden lg:block w-80 absolute right-8 top-20 bg-red-500 text-white p-4 mt-10 ml-20 -mb-32 z-10 rounded-md border-2 border-black">
             <h1 className="font-[Oswald] text-4xl">Mentioned Links</h1>
-            {post.links.map((link) => {
+            {post.links.map((text) => {
+              function extractSiteUrl(url) {
+                // Decode the URL
+                const decodedUrl = decodeURIComponent(url);
+
+                // Extract the site URL
+                const siteUrl = new URL(decodedUrl).hostname;
+
+                return siteUrl;
+              }
+
+              // Example usage
+              const inputUrl = text;
+              const link = extractSiteUrl(inputUrl);
               return (
-                <li className="hover:text-blue-600 font-[Inter] text-lg underline">
-                  {link}
+                <li key={link}>
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href={text}
+                    className="hover:text-blue-600 font-[Inter] text-lg underline"
+                  >
+                    {link}
+                  </a>
                 </li>
               );
             })}

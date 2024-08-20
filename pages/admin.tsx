@@ -194,7 +194,7 @@ const Admin = ({ posts }) => {
               };
               return (
                 <Link href={"/blogpost/" + _id} key={_id}>
-                  <div className="hover:bg-orange-800 decoration-white w-full border-b-2 p-10 border-white flex items-start justify-start">
+                  <div className="hover:bg-orange-800 decoration-white w-full border-b-2 p-10 border-white flex flex-col lg:flex-row items-center justify-center lg:items-start lg:justify-start">
                     <div className="flex flex-col items-start justify-start p-1">
                       <img
                         className="rounded w-[120px] h-[120px] m-2"
