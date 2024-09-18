@@ -5,18 +5,13 @@ const CTA = () => {
   const [joinForm, setJoinForm] = useState({
     name: "",
     email: "",
-    phonenumber: "",
     DOB: "",
   });
-  const handleChange = (e) => {
-    setJoinForm({ ...joinForm, [e.target.name]: e.target.value });
-  };
-
-  function uploadForm(name, email, phonenumber, DOB) {
-    let bodyContent = JSON.stringify({
+  
+  async function uploadForm(name, email, DOB) {
+    let bodyContent = await JSON.stringify({
       name: name,
       email: email,
-      phonenumber: phonenumber,
       DOB: DOB,
     });
     let headersList = {
@@ -24,19 +19,29 @@ const CTA = () => {
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
       "Content-Type": "application/json",
     };
-    const r = fetch("/api/", {
+    const r = await fetch("/api/join/", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
     });
+    
+    const result = await r.json();
+    alert(result);
+    console.log({
+      joinForm,
+      result,
+    });
   }
+  
+  const handleChange = (e) => {
+    setJoinForm({ ...joinForm, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = () => {
     uploadForm(
       joinForm.name,
       joinForm.email,
-      joinForm.phonenumber,
-      joinForm.DOB
+      joinForm.DOB,
     );
     setSubmited(true);
   };
@@ -53,6 +58,7 @@ const CTA = () => {
         >
           <h1 className="text-5xl font-[Italiana]">Join-Us</h1>
           <input
+            name="name"
             type="name"
             placeholder="name"
             id="name"
@@ -60,6 +66,7 @@ const CTA = () => {
             className="w-full p-2 bg-gray-200 rounded outline-none my-2"
           />
           <input
+            name="email"
             type="email"
             placeholder="e-mail"
             id="email"
@@ -67,12 +74,7 @@ const CTA = () => {
             className="w-full p-2 bg-gray-200 rounded outline-none my-2"
           />
           <input
-            type="text"
-            placeholder="phonenumber"
-            id="phonenumber"
-            className="w-full p-2 bg-gray-200 rounded outline-none my-2"
-          />
-          <input
+            name="DOB"
             type="date"
             placeholder="date of birth"
             id="DOB"

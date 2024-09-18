@@ -1,7 +1,7 @@
 // models/Post.js
 import mongoose from "mongoose";
 
-const MemberSchema = new mongoose.Schema({
+const FormSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -11,13 +11,13 @@ const MemberSchema = new mongoose.Schema({
     required: true,
   },
   DOB: {
-    type: Array,
+    type: String,
     required: false,
   },
-  joinedAt: {
+  appliedAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-export default mongoose.models.Member || mongoose.model("Member", MemberSchema);
+export default mongoose.models.Form || mongoose.model("Form", FormSchema);

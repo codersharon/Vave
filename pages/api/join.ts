@@ -1,6 +1,6 @@
 // pages/api/posts/index.js
 import dbConnect from "./mongodb";
-import Member from "./Members";
+import Form from "./Form";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -11,16 +11,16 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const member = await Member.findById(id);
-        await res.status(200).json(member);
+        const form = await Form.find();
+        await res.status(200).json(form);
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
       break;
     case "POST":
       try {
-        const member = await Member.create(req.body);
-        res.json(member);
+        const form = await Form.create(req.body);
+        res.json({success: true, form});
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
@@ -28,11 +28,11 @@ export default async function handler(req, res) {
     case "DELETE":
       try {
         //Find the note to be delete and delete it
-        let member = await Member.findById(id);
-        if (!member) {
+        let form = await Form.findById(id);
+        if (!form) {
           return res.status(404).send("Not Found");
         }
-        member = await Member.findByIdAndDelete(id);
+        form = await Form.findByIdAndDelete(id);
         res.json({ success: true });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
