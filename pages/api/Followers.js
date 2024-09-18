@@ -1,8 +1,7 @@
 // models/Post.js
 import mongoose from "mongoose";
-import { unique } from "next/dist/build/utils";
 
-const FormSchema = new mongoose.Schema({
+const FollowerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -16,10 +15,10 @@ const FormSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  appliedAt: {
+  startedAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-export default mongoose.models.Form || mongoose.model("Form", FormSchema);
+export default mongoose.models.Form || mongoose.model("Follower", FollowerSchema);

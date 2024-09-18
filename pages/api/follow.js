@@ -1,6 +1,6 @@
 // pages/api/posts/index.js
 import dbConnect from "./mongodb";
-import Form from "./Form";
+import Follower from "./Followers";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -11,16 +11,16 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const form = await Form.find();
-        await res.status(200).json({succes: true});
+        const follower = await Follower.find();
+        await res.status(200).json(Follower);
       } catch (error) {
-        res.status(200).json({ success: false, error: error.message });
+        res.status(400).json({ success: false, error: error.message });
       }
       break;
     case "POST":
       try {
-        const form = await Form.create(req.body);
-        res.json({success: true, form});
+        const follower = await Follower.create(req.body);
+        res.json({success: true, Follower});
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
@@ -28,11 +28,11 @@ export default async function handler(req, res) {
     case "DELETE":
       try {
         //Find the note to be delete and delete it
-        let form = await Form.findById(id);
-        if (!form) {
+        let follower = await Follower.findById(id);
+        if (!Follower) {
           return res.status(404).send("Not Found");
         }
-        form = await Form.findByIdAndDelete(id);
+        follower = await Follower.findByIdAndDelete(id);
         res.json({ success: true });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });

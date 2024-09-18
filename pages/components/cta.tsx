@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
 const CTA = () => {
+  const [error, setError] = useState([false, {mesg: ""}])
+
   const [submited, setSubmited] = useState(false);
   const [joinForm, setJoinForm] = useState({
     name: "",
     email: "",
     DOB: "",
   });
-  
+
   async function uploadForm(name, email, DOB) {
     let bodyContent = await JSON.stringify({
       name: name,
@@ -24,32 +26,71 @@ const CTA = () => {
       body: bodyContent,
       headers: headersList,
     });
-    
+
     const result = await r.json();
-    alert(result);
-    console.log({
-      joinForm,
-      result,
-    });
+    return result
   }
-  
+
   const handleChange = (e) => {
     setJoinForm({ ...joinForm, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    uploadForm(
-      joinForm.name,
-      joinForm.email,
-      joinForm.DOB,
-    );
-    setSubmited(true);
+  const handleSubmit = async () => {
+    const JoinResult = await uploadForm(joinForm.name, joinForm.email, joinForm.DOB);
+    if (JoinResult.succes == true) {
+      setSubmited(true);
+    } else if (JoinResult.succes == false) {
+      setError([true, {mesg: JoinResult.error}]);
+      setSubmited(true);
+    }
+  };
+
+  const [Following, setFollowing] = useState(false);
+  const [Follower, setFollower] = useState({
+    name: "",
+    email: "",
+    DOB: "",
+  });
+
+  async function Follow(name, email, DOB) {
+    let bodyContent = await JSON.stringify({
+      name: name,
+      email: email,
+      DOB: DOB,
+    });
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/json",
+    };
+    const r = await fetch("/api/follow/", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    });
+
+    const result = await r.json();
+    return result
+  }
+
+  const handFollowerDetailes = (e) => {
+    setFollower({ ...Follower, [e.target.name]: e.target.value });
+  };
+
+  const handleFollowing = async () => {
+    const FollowRequested = await Follow(Follower.name, Follower.email, Follower.DOB);
+    if (FollowRequested.succes == true) {
+      setFollowing(true);
+    } else if (FollowRequested.succes == false) {
+      setFollowing(true);
+      setError([true, {mesg: FollowRequested.error}]);
+    };
   };
   return (
     <div className="w-full bg-black text-black flex flex-col items-center justify-center p-2 lg:p-20">
       {submited ? (
         <h1 className="bg-[#C93EB3] p-2 font-bold">
-          Thank You For Applying Form! We will send an email with in a week
+          {error[0]? "Thank You For Applying Form! We will send an email with-in a week": error[1].mesg}
         </h1>
       ) : (
         <div
@@ -90,41 +131,48 @@ const CTA = () => {
           </button>
         </div>
       )}
-      <div
-        id="news-letter"
-        className="slide-right focus-within-animate-ping flex flex-col items-center justify-center bg-[#C93EB3] p-5 font-medium m-10 w-full md:w-3/5 lg:w-4/12  h-fit"
-      >
-        <h1 className="text-5xl font-[Italiana]">News-Letter</h1>
-        <input
-          type="name"
-          placeholder="name"
-          id="name"
-          className="w-full p-2 bg-gray-200 rounded outline-none my-2"
-        />
-        <input
-          type="email"
-          placeholder="e-mail"
-          id="email"
-          className="w-full p-2 bg-gray-200 rounded outline-none my-2"
-        />
-        <input
-          type="text"
-          placeholder="Your Interests"
-          id="Interest"
-          className="w-full p-2 bg-gray-200 rounded outline-none my-2"
-        />
-        <input
-          type="date"
-          id="date of birth"
-          className="w-full p-2 bg-gray-200 rounded outline-none my-2"
-        />
-        <button
-          type="submit"
-          className="bg-yellow-400 hover:shadow-md hover:shadow-yellow-300 shadow-none  rounded p-2"
+      {Following ? (
+        <h1 className="bg-[#C93EB3] p-2 font-bold">
+          {error[0]? "Thank You For Following Our Email News-Letter! We will send an email with-in a week": error[1].mesg}
+        </h1>
+      ) : (
+        <div
+          id="news-letter"
+          className="slide-right focus-within-animate-ping flex flex-col items-center justify-center bg-[#C93EB3] p-5 font-medium m-10 w-full md:w-3/5 lg:w-4/12  h-fit"
         >
-          Submit
-        </button>
-      </div>
+          <h1 className="text-5xl font-[Italiana]">News-Letter</h1>
+          <input
+            name="name"
+            onChange={handFollowerDetailes}
+            type="name"
+            placeholder="name"
+            id="name"
+            className="w-full p-2 bg-gray-200 rounded outline-none my-2"
+          />
+          <input
+            name="email"
+            onChange={handFollowerDetailes}
+            type="email"
+            placeholder="e-mail"
+            id="email"
+            className="w-full p-2 bg-gray-200 rounded outline-none my-2"
+          />
+          <input
+            name="date"
+            onChange={handFollowerDetailes}
+            type="date"
+            id="DOB"
+            className="w-full p-2 bg-gray-200 rounded outline-none my-2"
+          />
+          <button
+            type="submit"
+            onClick={handleFollowing}
+            className="bg-yellow-400 hover:shadow-md hover:shadow-yellow-300 shadow-none  rounded p-2"
+          >
+            Submit
+          </button>
+        </div>
+      )}
     </div>
   );
 };
