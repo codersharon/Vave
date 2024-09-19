@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const CTA = () => {
-  const [error, setError] = useState([false, {mesg: ""}])
+  const [error, setError] = useState({error: false, mesg: ""});
 
   const [submited, setSubmited] = useState(false);
   const [joinForm, setJoinForm] = useState({
@@ -37,10 +37,10 @@ const CTA = () => {
 
   const handleSubmit = async () => {
     const JoinResult = await uploadForm(joinForm.name, joinForm.email, joinForm.DOB);
-    if (JoinResult.succes == true) {
+    if (JoinResult.success == true) {
       setSubmited(true);
-    } else if (JoinResult.succes == false) {
-      setError([true, {mesg: JoinResult.error}]);
+    } else if (JoinResult.success == false) {
+      setError({error: true, mesg: JoinResult.error});
       setSubmited(true);
     }
   };
@@ -53,7 +53,7 @@ const CTA = () => {
   });
 
   async function Follow(name, email, DOB) {
-    let bodyContent = await JSON.stringify({
+    let bodyContent = JSON.stringify({
       name: name,
       email: email,
       DOB: DOB,
@@ -79,18 +79,19 @@ const CTA = () => {
 
   const handleFollowing = async () => {
     const FollowRequested = await Follow(Follower.name, Follower.email, Follower.DOB);
-    if (FollowRequested.succes == true) {
+    console.log(Follower)
+    if (FollowRequested.success == true) {
       setFollowing(true);
-    } else if (FollowRequested.succes == false) {
+    } else if (FollowRequested.success == false) {
+      setError({error: true, mesg: FollowRequested.error});
       setFollowing(true);
-      setError([true, {mesg: FollowRequested.error}]);
     };
   };
   return (
     <div className="w-full bg-black text-black flex flex-col items-center justify-center p-2 lg:p-20">
       {submited ? (
         <h1 className="bg-[#C93EB3] p-2 font-bold">
-          {error[0]? "Thank You For Applying Form! We will send an email with-in a week": error[1].mesg}
+          {error.error? error.mesg : "Thank You For Applying Form! We will send an email with-in a week"}
         </h1>
       ) : (
         <div
@@ -133,7 +134,7 @@ const CTA = () => {
       )}
       {Following ? (
         <h1 className="bg-[#C93EB3] p-2 font-bold">
-          {error[0]? "Thank You For Following Our Email News-Letter! We will send an email with-in a week": error[1].mesg}
+          {error.error? error.mesg : "Thank You For Following Our Email News-Letter! We will send an email with-in a week"}
         </h1>
       ) : (
         <div
@@ -158,7 +159,7 @@ const CTA = () => {
             className="w-full p-2 bg-gray-200 rounded outline-none my-2"
           />
           <input
-            name="date"
+            name="DOB"
             onChange={handFollowerDetailes}
             type="date"
             id="DOB"

@@ -14,7 +14,7 @@ const FormSchema = new mongoose.Schema({
   },
   DOB: {
     type: String,
-    required: false,
+    required: true,
   },
   appliedAt: {
     type: Date,

@@ -13,7 +13,7 @@ const MemberSchema = new mongoose.Schema({
   },
   DOB: {
     type: Array,
-    required: false,
+    required: true,
   },
   joinedAt: {
     type: Date,

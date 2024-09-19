@@ -30,6 +30,20 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false, error: error.message });
       }
       break;
+      break;
+    case "PUT":
+      try {
+        //Find the note to be delete and delete it
+        let post = await Post.findById(id);
+        if (!post) {
+          return res.status(404).send("Not Found");
+        }
+        post = await Post.findByIdAndUpdate(id, req.body);
+        res.json({ success: true });
+      } catch (error) {
+        res.status(400).json({ success: false, error: error.message });
+      }
+      break;
     default:
       res.status(400).json({ success: false });
       break;

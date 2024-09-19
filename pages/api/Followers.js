@@ -13,7 +13,7 @@ const FollowerSchema = new mongoose.Schema({
   },
   DOB: {
     type: String,
-    required: false,
+    required: true,
   },
   startedAt: {
     type: Date,
@@ -21,4 +21,4 @@ const FollowerSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Form || mongoose.model("Follower", FollowerSchema);
+export default mongoose.models.Form || mongoose.model("Followers", FollowerSchema);
