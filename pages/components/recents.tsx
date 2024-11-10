@@ -4,21 +4,21 @@ import Highlight from "./highlight";
 
 const Recents = ({ posts, highlights }) => {
   return (
-    <div className=" w-fit pb-16 border-b">
+    <div className=" w-1/2 pb-16 border-b">
       <h1 className="font-medium text-center w-full mt-12 md:mb-12 font-[Oswald] text-7xl text-white">
         Recently
       </h1>
       <div className="flex flex-col items-center justify-around md:flex-row md:items-start md:justify-center">
         <div className="pb-20 w-full border-l-2 border-white ml-2 border-b md:border-b-0">
           {posts ? (
-            posts.map(({ title, image, createdAt, _id }) => {
+            posts.map((post) => {
               return (
                 <Post
-                  title={title}
-                  image={image}
-                  createdAt={createdAt}
-                  id={_id}
-                  key={_id}
+                  title={post.title}
+                  image={ post.image }
+                  createdAt={post.createdAt}
+                  id={post._id}
+                  key={post._id}
                 />
               );
             })

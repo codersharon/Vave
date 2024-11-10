@@ -17,7 +17,7 @@ const Post = ({ id, image, content, title, createdAt, Auth }) => {
         </div>
         <img
           className="transition-all w-56 h-60 md:w-32 md:h-24 xl:w-48 xl:h-32 rounded-xl z-20"
-          src={postImg}
+          src={image? image: "/Post_Background"}
           alt="highlight"
         />  
         <div className="transition-all z-10 w-full md:w-full xl:w-full rounded-xl py-2">
